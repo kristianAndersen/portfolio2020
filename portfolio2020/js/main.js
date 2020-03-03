@@ -4,8 +4,67 @@ let header = document.querySelector(".header");
 let himg =document.querySelector(".headimg");
 let htxt = document.querySelector(".headertxt");
 let content = document.querySelector(".content");
+let gallery = document.querySelector(".gallery")
 let gshow = document.querySelector(".galleryShow")
-let gshowmedia = document.querySelector(".galleryShow__media")
+let gshowmedia = document.querySelector(".galleryShow__media");
+
+
+
+function buildGallery(gallerydata){
+
+  
+/*
+    let imagesrc= image.galleryImages;
+    let galleryImagesHeadline=image.galleryImagesHeadline;
+    let imagetxt=image.galleryImagesTxt;
+    let imagecap=image.galleryImgCap;
+ */
+
+ const gallerymarkup= `
+  ${gallerydata.map(image => `<div class="gallery-images">
+  <img class="gallery-image__media" loading="lazy" src="${image.galleryImages}">
+  <div class="gallery-images-txt"><h3>${image.galleryImagesHeadline}</h3><p>${image.galleryImagesTxt}</p></div>
+  <div class="imgCap"><h4>${image.galleryImgCap}</h4></div></div>`).join('')}`;
+
+  gallery.innerHTML = gallerymarkup;
+
+
+
+}
+
+
+
+
+/*=========================================================*/
+const xhr = new XMLHttpRequest();
+
+// listen for `onload` event
+xhr.onload = () => {
+    // process response
+    if (xhr.status == 200) {
+        // parse JSON data
+        let data=JSON.parse(xhr.response)
+        buildGallery(data)
+
+    } else {
+        console.error('Error!');
+    }
+};
+
+// create a `GET` request
+xhr.open('GET', 'data/gallerydata.json');
+
+// send request
+xhr.send();
+/*=========================================================*/
+
+
+
+
+
+
+
+
 
 window.addEventListener('scroll', function(e) {
     //header height
