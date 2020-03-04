@@ -1,3 +1,115 @@
+
+window.addEventListener('DOMContentLoaded', (event) => {
+
+    let content = document.querySelector(".content");
+    let header = document.querySelector(".header");
+    let rbgS = document.querySelector(".rgbShiftSlider");
+
+
+
+
+//@media from css
+    let bigazzScreens = window.matchMedia("(min-width: 1281px)"),
+    niceScreens = window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),          
+    tablets = window.matchMedia("(min-width: 768px) and (max-width: 1024px)"),
+    phone = window.matchMedia("(min-width: 320px) and (max-width: 767px)");
+
+//how big is the screen
+    function mediaSize() { 
+            if(bigazzScreens.matches){
+                console.log('big init')
+                setUpheader('big')
+            }
+
+            if(niceScreens.matches){
+                console.log('oooh nice')
+                setUpheader('medium')
+            }
+
+            if(tablets.matches){
+                console.log('toy computer')
+                setUpheader('normal')
+            }
+
+            if(phone.matches){
+                console.log('who you gonna call')
+                setUpheader('small')
+            }
+
+    
+    }
+    //trigger media size
+      mediaSize();
+      window.addEventListener('resize', mediaSize, false);  
+//==========================================================================//
+
+
+
+function setUpheader(mediasize){
+let images = [
+        "https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1655&q=80",
+        "https://images.unsplash.com/photo-1500628550463-c8881a54d4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1649&q=80",
+        "https://images.unsplash.com/photo-1501366062246-723b4d3e4eb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1973&q=80",
+        "https://images.unsplash.com/photo-1471666875520-c75081f42081?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2038&q=80",
+        "https://images.unsplash.com/photo-1513738260158-30e559c10093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"];
+
+
+// set images
+
+  
+  // instanciate slider
+  rbgShiftSlider({
+    nav: false,
+    navElement: ' ',
+    slideImages: images,
+    stageWidth: 1920,
+    stageHeight: 1080,
+    displacementImage: 'assets/displace-circle.png',
+    fullScreen: true,
+    transitionDuration: 0.50, // must be 0.1 > transitionGhostDuration
+    transitionGhostDuration: 0.25,
+    transitionFilterIntensity: 400,
+    transitionSpriteIntensity: 3,
+    mouseDispIntensity: 3,
+    interactive: true,
+    autoPlay: true,
+    autoPlaySpeed: 5500 });
+
+}
+
+
+//==========================================================================//
+//scroll flash
+window.addEventListener('scroll', function(e) {
+    //header height
+    let topPos =  content.getBoundingClientRect();
+    let top = topPos.top;
+ 
+    header.style.height=Math.round(top)+'px'
+    let can=rbgS;
+    //header image 
+    let scroll =Number( (Math.round(this.pageYOffset)/350) )+1;
+    let scrollprc=scroll;
+    let scaleNum=Number(1)+scrollprc/4;
+
+   // can.style.transform='scale('+scrollprc+'.'+scrollprc+')';
+   can.style.top ='-'+Number(9)+scroll+'%';
+  // htxt.style.transform='scale3d('+scaleNum+','+scaleNum+','+scrollprc+')';//
+   //htxt.style.top=Number(5)*scroll-0.5+'%';
+});
+
+
+
+
+
+
+//==========================================================================//
+//endit
+});
+
+
+
+/*
 window.addEventListener('DOMContentLoaded', (event) => {
 
 let header = document.querySelector(".header");
@@ -13,12 +125,6 @@ let gshowmedia = document.querySelector(".galleryShow__media");
 function buildGallery(gallerydata){
 
   
-/*
-    let imagesrc= image.galleryImages;
-    let galleryImagesHeadline=image.galleryImagesHeadline;
-    let imagetxt=image.galleryImagesTxt;
-    let imagecap=image.galleryImgCap;
- */
 
  const gallerymarkup= `
   ${gallerydata.map(image => `<div class="gallery-images">
@@ -35,7 +141,7 @@ function buildGallery(gallerydata){
 
 
 
-/*=========================================================*/
+
 const xhr = new XMLHttpRequest();
 
 // listen for `onload` event
@@ -56,7 +162,7 @@ xhr.open('GET', 'data/gallerydata.json');
 
 // send request
 xhr.send();
-/*=========================================================*/
+
 
 
 
@@ -141,3 +247,5 @@ document.querySelectorAll('.gallery-images').forEach(item => {
 
 
 });
+
+*/

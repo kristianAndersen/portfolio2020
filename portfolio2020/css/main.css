@@ -123,6 +123,7 @@ textarea {
        transform-style: preserve-3d; 
        mix-blend-mode: lighten;
    }
+  /* 
    .headimg{
      margin:0;
      position: absolute;
@@ -134,7 +135,30 @@ textarea {
      transform: translateY(-50%);
      transform: scale3d(1, 1, 1);
    /*  transform:translateZ(5000px);*/
-   }
+   
+
+.rgbShiftSlider {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /*mix-blend-mode: hard-light;*/
+    opacity: 0.85;
+    width: 100vw;
+    height: 100vh;
+
+    /*transform-origin : 50vw 300vh;*/
+    transform-origin: 50% 50%;
+}
+
+canvas {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    z-index: 0;
+}
+
+
    .content{
     margin-top:  60vh;
     min-height: 40vh;
@@ -305,9 +329,9 @@ textarea {
     .gallery { grid-template-columns: repeat(1, 1fr); }
 
     .header{height:50vh; background:#333 }
-    .headimg{ top: 10%;
-        transform: translateY(-10%);
-    }
+    
+     canvas{min-width: 767px;   height: auto; }
+
     .content{margin-top:  20vh;}
 
     .headertxt{
