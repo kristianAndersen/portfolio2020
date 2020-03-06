@@ -14,6 +14,7 @@ html,body{
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: black;
 }
 
 html {
@@ -102,9 +103,9 @@ textarea {
        left: 0;
        width: 100vw;
        height: 60vh;
-       
        overflow: hidden;
-       perspective: 400px;
+       perspective: 300px;
+       perspective-origin: 50% 50%;
     }
    .headertxt{
        display: block;
@@ -123,18 +124,7 @@ textarea {
        transform-style: preserve-3d; 
        mix-blend-mode: lighten;
    }
-  /* 
-   .headimg{
-     margin:0;
-     position: absolute;
-     display: block;
-     width: 100vw;
-     height: auto; 
-     transform-origin: center center;
-     top:0%; left: 0; bottom: 0; right: 0;
-     transform: translateY(-50%);
-     transform: scale3d(1, 1, 1);
-   /*  transform:translateZ(5000px);*/
+
    
 
 .rgbShiftSlider {
@@ -145,17 +135,21 @@ textarea {
     /*mix-blend-mode: hard-light;*/
     opacity: 0.85;
     width: 100vw;
-    height: 100vh;
-
+    height:60vh;
     /*transform-origin : 50vw 300vh;*/
     transform-origin: 50% 50%;
+transform-style: preserve-3d;
+transform: translateZ(0);
+transform: scale(1);
+
 }
 
 canvas {
     position: absolute;
     left: 0;
-    top: 20px;
+    top: 0;
     z-index: 0;
+    background-color: black;
 }
 
 
@@ -164,7 +158,8 @@ canvas {
     min-height: 40vh;
     position: relative;
     width: 100%;
-    background: #888;
+    background: rgb(25,48,140);
+background: linear-gradient(0deg, rgba(25,48,140,1) 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,1) 100%);
    }
 
    .content::after{
@@ -264,10 +259,7 @@ canvas {
    @media (min-width: 1281px) {
     .gallery { grid-template-columns: repeat(3, 1fr); }
   /*  .header{background:#fff444}*/
-    .headimg{ 
-        top:-40%;
-        transform: translateY(50%);
-    }
+
     
     .gallery-images{height: 25rem;}
 
@@ -283,8 +275,19 @@ canvas {
         mix-blend-mode: difference;
         color: rgb(4, 4, 247);
     }
-
-
+    .rgbShiftSlider {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*mix-blend-mode: hard-light;*/
+        opacity: 0.85;
+        width: 100vw;
+        height:60vh;
+        /*transform-origin : 50vw 300vh;*/
+        transform-origin: 50% 50%;
+    }
+    .header{height:50vh; background:#333 }
     .content{margin-top:  50vh;}
 
 
@@ -294,7 +297,22 @@ canvas {
     .gallery { grid-template-columns: repeat(3, 1fr); }
 
     .header{height:45vh; background:#333 }
-    .headimg{ top: 0%;}
+  
+    
+    .rgbShiftSlider {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*mix-blend-mode: hard-light;*/
+        opacity: 0.85;
+        width: 100vw;
+        height:45vh;
+        /*transform-origin : 50vw 300vh;*/
+        transform-origin: 50% 50%;
+    }
+
+
     .content{margin-top:  45vh;}
     .gallery-images{height: 20rem;}
 
@@ -312,7 +330,19 @@ canvas {
     .gallery { grid-template-columns: repeat(2, 1fr); }
     
     .header{height:30vh; background:#333 }
-    .headimg{ top: 0%;}
+    .rgbShiftSlider {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*mix-blend-mode: hard-light;*/
+        opacity: 0.85;
+        width: 100vw;
+        height:30vh;
+        /*transform-origin : 50vw 300vh;*/
+        transform-origin: 50% 50%;
+    }
+
     .content{margin-top:  30vh;}
 
     .headertxt{
@@ -328,11 +358,22 @@ canvas {
    @media (min-width: 320px) and (max-width: 767px) {
     .gallery { grid-template-columns: repeat(1, 1fr); }
 
-    .header{height:50vh; background:#333 }
+   .header{height:25vh; background:#000 }
     
-     canvas{min-width: 767px;   height: auto; }
-
-    .content{margin-top:  20vh;}
+     /*canvas{min-width: 320px;   height: auto; }*/
+     .rgbShiftSlider {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*mix-blend-mode: hard-light;*/
+        opacity: 0.85;
+        width: 100vw;
+        height:20vh;
+        /*transform-origin : 50vw 300vh;*/
+        transform-origin: 50% 50%;
+    }
+    .content{margin-top:  25vh;}
 
     .headertxt{
         text-align: center;

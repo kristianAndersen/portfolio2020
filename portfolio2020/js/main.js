@@ -10,51 +10,57 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 //@media from css
     let bigazzScreens = window.matchMedia("(min-width: 1281px)"),
-    niceScreens = window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),          
-    tablets = window.matchMedia("(min-width: 768px) and (max-width: 1024px)"),
-    phone = window.matchMedia("(min-width: 320px) and (max-width: 767px)");
-
+        niceScreens = window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),          
+        tablets = window.matchMedia("(min-width: 768px) and (max-width: 1024px)"),
+        phone = window.matchMedia("(min-width: 320px) and (max-width: 767px)");
+    let devicecsize;
 //how big is the screen
     function mediaSize() { 
             if(bigazzScreens.matches){
-                console.log('big init')
-                setUpheader('big')
+                //console.log('big init')
+                devicecsize='big'
             }
 
             if(niceScreens.matches){
-                console.log('oooh nice')
-                setUpheader('medium')
+                //console.log('oooh nice')
+                devicecsize='medium'
             }
 
             if(tablets.matches){
-                console.log('toy computer')
-                setUpheader('normal')
+                //console.log('toy computer')
+                devicecsize='normal'
             }
 
             if(phone.matches){
-                console.log('who you gonna call')
-                setUpheader('small')
+                //console.log('who you gonna call')
+                devicecsize='small'
             }
 
     
     }
     //trigger media size
       mediaSize();
-      window.addEventListener('resize', mediaSize, false);  
+      window.addEventListener('resize', mediaSize, false); 
+      setUpheader()
+
 //==========================================================================//
 
 
 
-function setUpheader(mediasize){
-let images = [
-        "https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1655&q=80",
-        "https://images.unsplash.com/photo-1500628550463-c8881a54d4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1649&q=80",
-        "https://images.unsplash.com/photo-1501366062246-723b4d3e4eb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1973&q=80",
-        "https://images.unsplash.com/photo-1471666875520-c75081f42081?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2038&q=80",
-        "https://images.unsplash.com/photo-1513738260158-30e559c10093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"];
+function setUpheader( ){
+    
+ //console.log( devicecsize+"--"+"img/header/"+devicecsize+"/"+devicecsize+"-1.png")
+
+    let images = [ "img/header/"+devicecsize+"/"+devicecsize+"-1.png",
+               "img/header/"+devicecsize+"/"+devicecsize+"-2.png",
+               "img/header/"+devicecsize+"/"+devicecsize+"-3.png",
+               "img/header/"+devicecsize+"/"+devicecsize+"-4.png"];
 
 
-// set images
+// 
+let wv = window.innerWidth;
+let wh = header.offsetHeight;
+
 
   
   // instanciate slider
@@ -62,8 +68,8 @@ let images = [
     nav: false,
     navElement: ' ',
     slideImages: images,
-    stageWidth: 1920,
-    stageHeight: 1080,
+    stageWidth: wv,
+    stageHeight: wh,
     displacementImage: 'assets/displace-circle.png',
     fullScreen: true,
     transitionDuration: 0.50, // must be 0.1 > transitionGhostDuration
@@ -88,14 +94,11 @@ window.addEventListener('scroll', function(e) {
     header.style.height=Math.round(top)+'px'
     let can=rbgS;
     //header image 
-    let scroll =Number( (Math.round(this.pageYOffset)/350) )+1;
-    let scrollprc=scroll;
-    let scaleNum=Number(1)+scrollprc/4;
+   // let scroll =Number( (Math.round(this.pageYOffset)/350) )+1;
+    let scaleNum=Math.round(Number(this.pageYOffset/4));
 
-   // can.style.transform='scale('+scrollprc+'.'+scrollprc+')';
-   can.style.top ='-'+Number(9)+scroll+'%';
-  // htxt.style.transform='scale3d('+scaleNum+','+scaleNum+','+scrollprc+')';//
-   //htxt.style.top=Number(5)*scroll-0.5+'%';
+   can.style.transform='translateZ('+scaleNum+'px)';
+
 });
 
 
